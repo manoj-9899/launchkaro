@@ -96,12 +96,22 @@
 
 .project-image-frame {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   min-height: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   background: var(--secondary);
+  box-shadow: 0 1rem 2.5rem color-mix(in oklch, var(--foreground) 8%, transparent), inset 0 0 0 0.35rem color-mix(in oklch, var(--card) 72%, transparent);
   isolation: isolate;
+}
+
+.project-image-frame::before {
+  position: absolute;
+  inset: 0.35rem;
+  z-index: 1;
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  content: '';
+  pointer-events: none;
 }
 
 .project-image-frame::after {

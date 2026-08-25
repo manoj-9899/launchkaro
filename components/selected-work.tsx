@@ -97,7 +97,7 @@ export function SelectedWork() {
           {projects.map((project, index) => (
             <article key={project.name} data-index={index} data-project-current={index === currentIndex ? 'true' : undefined} className={`project-story project-story--${project.layout}`}>
               <div className="project-image-frame">
-                <Image src={project.image} alt={project.alt} fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" priority={index === 0} />
+                <Image src={project.image} alt={project.alt} fill sizes="(max-width: 768px) 100vw, 66vw" className="project-screenshot object-contain p-2 transition-transform duration-700 ease-out sm:p-3 group-hover:scale-[1.0125]" priority={index === 0} />
                 <span className="project-index font-mono" aria-hidden="true">{project.number}</span>
               </div>
               <div className="project-copy flex flex-col gap-5">
