@@ -75,21 +75,21 @@ export function SelectedWork() {
   }
 
   return (
-    <section ref={sectionRef} id="projects" className="projects-section bg-background py-16 md:py-32" aria-labelledby="projects-title">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <header className="projects-intro mb-14 flex flex-col gap-8 md:mb-24 md:flex-row md:items-end md:justify-between">
+    <section ref={sectionRef} id="projects" className="projects-section bg-background py-12 md:py-32" aria-labelledby="projects-title">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5 md:px-8">
+        <header className="projects-intro mb-10 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="mb-4 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent">Selected work / 2024—25</p>
-            <h2 id="projects-title" className="font-serif text-5xl leading-[0.95] text-foreground text-balance md:text-7xl">Built to be <em className="text-accent">remembered.</em></h2>
+            <h2 id="projects-title" className="max-w-[10ch] font-serif text-4xl leading-[0.94] text-foreground text-balance sm:text-5xl md:max-w-none md:text-7xl">Built to be <em className="text-accent">remembered.</em></h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground text-pretty md:pb-1 md:text-base">A small collection of digital spaces made to give good businesses a sharper first impression.</p>
         </header>
 
-        <div className="flex items-center justify-between border-y border-border py-3">
+        <div className="flex items-center justify-between gap-3 border-y border-border py-3">
           <p className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">Five digital identities</p>
           <div className="flex items-center gap-2" aria-label="Project navigation">
-            <button type="button" onClick={() => moveToProject('previous')} className="project-nav-button" aria-label="Previous project">←</button>
-            <button type="button" onClick={() => moveToProject('next')} className="project-nav-button" aria-label="Next project">→</button>
+            <button type="button" onClick={() => moveToProject('previous')} className="project-nav-button" aria-label="Previous project" disabled={currentIndex === 0}>←</button>
+            <button type="button" onClick={() => moveToProject('next')} className="project-nav-button" aria-label="Next project" disabled={currentIndex === projects.length - 1}>→</button>
           </div>
         </div>
 
