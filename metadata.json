@@ -1,0 +1,6 @@
+{
+  "name": "LaunchKaro",
+  "description": "Websites for local businesses in Latur, Maharashtra - design, build and maintain fast, search-friendly websites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
