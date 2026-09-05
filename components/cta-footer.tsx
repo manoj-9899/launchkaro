@@ -2,7 +2,7 @@ import { ArrowUpRight, MessageCircle, Phone } from 'lucide-react'
 import { MagneticButton } from '@/components/magnetic-button'
 import { Reveal } from '@/components/reveal'
 
-const sitemap = ['Services', 'Work', 'Process', 'Contact']
+const sitemap = ['Services', 'Work', 'Process', 'Pricing', 'Contact']
 
 export function CtaFooter() {
   return (
