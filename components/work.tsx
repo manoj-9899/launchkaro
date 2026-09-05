@@ -18,53 +18,58 @@ import { cn } from '@/lib/utils'
 const projects = [
   {
     id: '01',
-    title: '[Project title 01]',
+    title: 'Nocturne',
     client: '[Client 01]',
-    category: 'Brand Flagship & Commerce',
-    tagline: 'High-performance digital storefront engineered for speed, clean aesthetics, and local search prominence.',
+    category: 'Fine Dining',
+    tagline: 'Elegant, mood-lit digital experience crafted for a luxury restaurant to showcase menus and table reservations.',
     year: '2025',
     image: '/images/work-1.png',
-    tags: ['Next.js', 'Local SEO', 'Commerce'],
+    liveUrl: 'https://nocturne-restaurant-website.vercel.app/',
+    tags: ['Fine Dining', 'Menu Showcase', 'Reservations'],
   },
   {
     id: '02',
-    title: '[Project title 02]',
+    title: 'Atelier Estate',
     client: '[Client 02]',
-    category: 'Editorial Portfolio & Studio',
-    tagline: 'High-contrast typography showcase with bespoke architectural layout, subtle reveals, and micro-interactions.',
+    category: 'Real Estate',
+    tagline: 'Sophisticated property portal designed for premium residential and luxury real estate listings.',
     year: '2025',
     image: '/images/work-2.png',
-    tags: ['Editorial', 'Typography', 'Responsive'],
+    liveUrl: 'https://atelier-estate-website.vercel.app/',
+    tags: ['Real Estate', 'Luxury Listings', 'Property Portal'],
   },
   {
     id: '03',
-    title: '[Project title 03]',
+    title: 'Patel Function Hall',
     client: '[Client 03]',
-    category: 'Specialist Service & Booking Flow',
-    tagline: 'Frictionless appointment scheduling portal designed for seamless conversion across mobile and desktop.',
+    category: 'Events & Venues',
+    tagline: 'Event venue website highlighting banquet amenities, booking inquiries, and photo galleries for weddings and celebrations.',
     year: '2024',
     image: '/images/work-3.png',
-    tags: ['Booking Flow', 'Mobile-First', 'Fast Load'],
+    liveUrl: 'https://patel-function-hall-demo-1.vercel.app/',
+    tags: ['Events & Venues', 'Banquet Amenities', 'Inquiries'],
   },
   {
     id: '04',
-    title: '[Project title 04]',
+    title: 'Spice Palace',
     client: '[Client 04]',
-    category: 'Hospitality & Culinary Identity',
-    tagline: 'Sensory digital experience celebrating culinary craft, seasonal tasting menus, and direct reservations.',
+    category: 'Café & Restaurant',
+    tagline: 'Vibrant restaurant website with menu highlights, location integration, and direct ordering pathways.',
     year: '2024',
     image: '/images/work-4.png',
-    tags: ['Brand Identity', 'Interactive Menu', 'Hospitality'],
+    liveUrl: 'https://spicepalace.netlify.app/',
+    tags: ['Café & Restaurant', 'Menu Highlights', 'Online Ordering'],
   },
   {
     id: '05',
-    title: '[Project title 05]',
+    title: 'Ascent Academy',
     client: '[Client 05]',
-    category: 'B2B Catalog & Manufacturing',
-    tagline: 'Structured product showcase with localized search authority, rapid inquiries, and enterprise performance.',
+    category: 'Education',
+    tagline: 'Modern coaching institute website for entrance exam prep (JEE, NEET), built to showcase programs, faculty, and results with demo class bookings.',
     year: '2024',
     image: '/images/work-5.png',
-    tags: ['B2B Catalog', 'Google Local', 'Inquiry Engine'],
+    liveUrl: 'https://ascent-academy-website.vercel.app/',
+    tags: ['Education', 'JEE & NEET Prep', 'Demo Class Booking'],
   },
 ]
 
@@ -168,7 +173,8 @@ export function Work() {
           label="Selected work"
           title={
             <>
-              Section headline <em className="font-serif font-normal italic text-foreground/70">placeholder</em> goes here.
+              Selected work built to{' '}
+              <em className="font-serif font-normal italic text-foreground/70">perform</em>.
             </>
           }
           aside={
@@ -176,7 +182,7 @@ export function Work() {
               href="#contact"
               className="link-underline inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              All projects
+              Start a project
               <ArrowUpRight className="size-3.5" />
             </a>
           }
@@ -335,9 +341,21 @@ export function Work() {
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/25 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover/image:opacity-40" />
 
                         {/* Hover View Button on Active Card */}
-                        <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-background/95 text-foreground opacity-0 shadow-md backdrop-blur-sm transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5">
-                          <ArrowUpRight className="size-4" />
-                        </div>
+                        {isActive ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open live site for ${project.title}`}
+                            className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full bg-background/95 text-foreground opacity-0 shadow-md backdrop-blur-sm transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5 hover:bg-foreground hover:text-background"
+                          >
+                            <ArrowUpRight className="size-4" />
+                          </a>
+                        ) : (
+                          <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-background/95 text-foreground opacity-0 shadow-md backdrop-blur-sm transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5">
+                            <ArrowUpRight className="size-4" />
+                          </div>
+                        )}
 
                         {/* Client / Category Tag */}
                         <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-5 md:left-6 flex items-center gap-2">
@@ -359,7 +377,9 @@ export function Work() {
                             </h3>
                           </div>
                           <a
-                            href="#contact"
+                            href={isActive ? project.liveUrl : undefined}
+                            target={isActive ? '_blank' : undefined}
+                            rel={isActive ? 'noopener noreferrer' : undefined}
                             className="link-underline inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-foreground transition-colors hover:text-signal"
                             onClick={(e) => {
                               if (!isActive) {
@@ -367,7 +387,7 @@ export function Work() {
                               }
                             }}
                           >
-                            Explore project
+                            Live demo
                             <ArrowUpRight className="size-3.5" />
                           </a>
                         </div>
