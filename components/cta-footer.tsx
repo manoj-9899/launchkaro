@@ -90,19 +90,25 @@ export function CtaFooter() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
               A digital agency in Latur building websites that help local businesses get found and get chosen.
             </p>
-            <a
-              href="mailto:launchkaro.team@gmail.com"
-              className="link-underline mt-6 inline-flex items-center gap-1.5 text-base sm:text-lg font-medium tracking-tight break-all sm:break-normal"
-            >
-              launchkaro.team@gmail.com
-              <ArrowUpRight className="size-4 shrink-0" />
-            </a>
-            <a
-              href="tel:+919423509134"
-              className="link-underline mt-2 inline-block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              +91 94235 09134
-            </a>
+            <div className="mt-6 flex flex-col items-start gap-2">
+              <div className="block">
+                <a
+                  href="mailto:launchkaro.team@gmail.com"
+                  className="link-underline inline-flex items-center gap-1.5 text-base sm:text-lg font-medium tracking-tight"
+                >
+                  launchkaro.team@gmail.com
+                  <ArrowUpRight className="size-4 shrink-0" />
+                </a>
+              </div>
+              <div className="block">
+                <a
+                  href="tel:+919423509134"
+                  className="link-underline inline-block py-0.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  +91 94235 09134
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
