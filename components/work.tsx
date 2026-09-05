@@ -19,55 +19,50 @@ const projects = [
   {
     id: '01',
     title: 'Nocturne',
-    client: '[Client 01]',
     category: 'Fine Dining',
     tagline: 'Elegant, mood-lit digital experience crafted for a luxury restaurant to showcase menus and table reservations.',
     year: '2025',
-    image: '/images/work-1.png',
+    image: '/images/work-1.webp',
     liveUrl: 'https://nocturne-restaurant-website.vercel.app/',
     tags: ['Fine Dining', 'Menu Showcase', 'Reservations'],
   },
   {
     id: '02',
     title: 'Atelier Estate',
-    client: '[Client 02]',
     category: 'Real Estate',
     tagline: 'Sophisticated property portal designed for premium residential and luxury real estate listings.',
     year: '2025',
-    image: '/images/work-2.png',
+    image: '/images/work-2.webp',
     liveUrl: 'https://atelier-estate-website.vercel.app/',
     tags: ['Real Estate', 'Luxury Listings', 'Property Portal'],
   },
   {
     id: '03',
     title: 'Patel Function Hall',
-    client: '[Client 03]',
     category: 'Events & Venues',
     tagline: 'Event venue website highlighting banquet amenities, booking inquiries, and photo galleries for weddings and celebrations.',
     year: '2024',
-    image: '/images/work-3.png',
+    image: '/images/work-3.webp',
     liveUrl: 'https://patel-function-hall-demo-1.vercel.app/',
     tags: ['Events & Venues', 'Banquet Amenities', 'Inquiries'],
   },
   {
     id: '04',
     title: 'Spice Palace',
-    client: '[Client 04]',
     category: 'Café & Restaurant',
     tagline: 'Vibrant restaurant website with menu highlights, location integration, and direct ordering pathways.',
     year: '2024',
-    image: '/images/work-4.png',
+    image: '/images/work-4.webp',
     liveUrl: 'https://spicepalace.netlify.app/',
     tags: ['Café & Restaurant', 'Menu Highlights', 'Online Ordering'],
   },
   {
     id: '05',
     title: 'Ascent Academy',
-    client: '[Client 05]',
     category: 'Education',
     tagline: 'Modern coaching institute website for entrance exam prep (JEE, NEET), built to showcase programs, faculty, and results with demo class bookings.',
     year: '2024',
-    image: '/images/work-5.png',
+    image: '/images/work-5.webp',
     liveUrl: 'https://ascent-academy-website.vercel.app/',
     tags: ['Education', 'JEE & NEET Prep', 'Demo Class Booking'],
   },
@@ -208,23 +203,20 @@ export function Work() {
               aria-hidden="true"
             >
               <div className="rounded-2xl md:rounded-3xl border border-transparent">
-                <div className="px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5">
-                  <div className="h-4" />
-                </div>
                 <div className="aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] w-full" />
-                <div className="p-4 sm:p-5 md:p-7">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-transparent pb-4">
-                    <div className="h-7 text-lg sm:text-xl md:text-2xl font-medium tracking-tight">
+                <div className="p-5 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                    <div className="h-8 text-xl sm:text-2xl md:text-3xl font-medium tracking-tight">
                       {projects[0].title}
                     </div>
-                    <div className="h-5 text-xs md:text-sm">Explore project</div>
+                    <div className="h-5 text-xs sm:text-sm">Live demo</div>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed">
                     {projects[0].tagline}
                   </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
                     {projects[0].tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-[11px]">
+                      <span key={tag} className="px-3 py-0.5 text-[11px]">
                         {tag}
                       </span>
                     ))}
@@ -299,46 +291,28 @@ export function Work() {
                       </div>
                     )}
 
-                    {/* Main Card Frame */}
+                    {/* Main Cinematic Card Frame */}
                     <div
                       className={cn(
                         'relative overflow-hidden rounded-2xl md:rounded-3xl border bg-card transition-all duration-700',
                         isActive
-                          ? 'border-border/90 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.12)] ring-1 ring-foreground/5'
-                          : 'border-border/60 shadow-sm'
+                          ? 'border-border/80 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] ring-1 ring-foreground/5'
+                          : 'border-border/50 shadow-sm'
                       )}
                     >
-                      {/* Editorial Top Chrome Bar */}
-                      <div className="flex items-center justify-between border-b border-border/60 px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 bg-muted/25">
-                        <div className="flex items-center gap-2">
-                          <span className="size-2 rounded-full bg-foreground/25" />
-                          <span className="size-2 rounded-full bg-foreground/25" />
-                          <span className="size-2 rounded-full bg-foreground/25" />
-                          <span className="ml-1 sm:ml-2 font-mono text-[10px] sm:text-[11px] text-muted-foreground tracking-wider">
-                            SHOWCASE // {project.id}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 sm:gap-3">
-                          <span className="hidden sm:inline-block rounded-full border border-border/70 bg-background/90 px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-foreground/80">
-                            {project.category}
-                          </span>
-                          <span className="text-xs text-muted-foreground font-mono tabular-nums">{project.year}</span>
-                        </div>
-                      </div>
-
-                      {/* Large Image Preview Area */}
+                      {/* Cinematic Full-Bleed Image Preview Area */}
                       <div className="group/image relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] w-full overflow-hidden bg-secondary">
                         <Image
                           src={project.image}
                           alt={`${project.title} - ${project.category}`}
                           fill
                           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 840px"
-                          className="object-cover transition-transform duration-[1.4s] ease-out-expo group-hover/image:scale-[1.04]"
+                          className="object-cover transition-transform duration-[1.6s] ease-out-expo group-hover/image:scale-[1.04]"
                           priority={index === 0 || index === 1}
                         />
 
-                        {/* Subtle editorial contrast veil */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/25 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover/image:opacity-40" />
+                        {/* Subtle cinematic gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover/image:opacity-20" />
 
                         {/* Hover View Button on Active Card */}
                         {isActive ? (
@@ -347,40 +321,34 @@ export function Work() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Open live site for ${project.title}`}
-                            className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full bg-background/95 text-foreground opacity-0 shadow-md backdrop-blur-sm transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5 hover:bg-foreground hover:text-background"
+                            className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5 hover:bg-foreground hover:text-background"
                           >
                             <ArrowUpRight className="size-4" />
                           </a>
                         ) : (
-                          <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-background/95 text-foreground opacity-0 shadow-md backdrop-blur-sm transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5">
+                          <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5">
                             <ArrowUpRight className="size-4" />
                           </div>
                         )}
-
-                        {/* Client / Category Tag */}
-                        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-5 md:left-6 flex items-center gap-2">
-                          <span className="rounded-full border border-white/50 bg-white/85 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-medium tracking-wide text-foreground shadow-sm backdrop-blur-md">
-                            {project.client}
-                          </span>
-                        </div>
                       </div>
 
-                      {/* Card Content & Metadata */}
-                      <div className="p-4 sm:p-5 md:p-7">
-                        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-border/60 pb-3 sm:pb-4">
-                          <div className="flex items-baseline gap-2 sm:gap-3">
-                            <span className="font-serif text-sm italic text-foreground/50 tabular-nums">
-                              {project.id}
-                            </span>
-                            <h3 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-foreground">
+                      {/* Clean Gallery Info Block */}
+                      <div className="p-5 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
+                        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                          <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-foreground">
                               {project.title}
                             </h3>
+                            <span className="text-xs sm:text-sm text-muted-foreground/75 font-mono">
+                              — {project.category} <span className="opacity-60">({project.year})</span>
+                            </span>
                           </div>
+
                           <a
                             href={isActive ? project.liveUrl : undefined}
                             target={isActive ? '_blank' : undefined}
                             rel={isActive ? 'noopener noreferrer' : undefined}
-                            className="link-underline inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-foreground transition-colors hover:text-signal"
+                            className="link-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground transition-colors hover:text-signal shrink-0"
                             onClick={(e) => {
                               if (!isActive) {
                                 e.preventDefault()
@@ -392,17 +360,16 @@ export function Work() {
                           </a>
                         </div>
 
-                        <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                          <span className="font-medium text-foreground/80 sm:hidden">{project.category} — </span>
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-1">
                           {project.tagline}
                         </p>
 
-                        {/* Project tags */}
-                        <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                        {/* Project Tags */}
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1">
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[10px] sm:text-[11px] text-muted-foreground font-mono"
+                              className="rounded-full border border-border/60 bg-secondary/50 px-3 py-0.5 text-[11px] text-muted-foreground font-mono"
                             >
                               {tag}
                             </span>

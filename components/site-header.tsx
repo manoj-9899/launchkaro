@@ -60,7 +60,11 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-2">
             <a
-              href="#contact"
+              href="#contact-form"
+              onClick={(e) => {
+                e.preventDefault()
+                window.dispatchEvent(new CustomEvent('open-contact-modal'))
+              }}
               className="hidden h-10 items-center rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform duration-500 ease-out-expo hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
             >
               Start a project
@@ -124,8 +128,12 @@ export function SiteHeader() {
           style={{ transitionDelay: open ? '400ms' : '0ms' }}
         >
           <a
-            href="#contact"
-            onClick={() => setOpen(false)}
+            href="#contact-form"
+            onClick={(e) => {
+              e.preventDefault()
+              setOpen(false)
+              window.dispatchEvent(new CustomEvent('open-contact-modal'))
+            }}
             className="flex h-14 items-center justify-center rounded-full bg-foreground text-base font-medium text-background"
           >
             Start a project

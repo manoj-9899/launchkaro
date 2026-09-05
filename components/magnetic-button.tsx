@@ -12,6 +12,7 @@ type MagneticButtonProps = {
   icon?: boolean
   target?: string
   rel?: string
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
 }
 
 export function MagneticButton({
@@ -22,6 +23,7 @@ export function MagneticButton({
   icon = true,
   target,
   rel,
+  onClick,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null)
 
@@ -45,6 +47,7 @@ export function MagneticButton({
       href={href}
       target={target}
       rel={rel}
+      onClick={onClick}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={cn(

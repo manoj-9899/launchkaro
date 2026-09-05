@@ -51,7 +51,7 @@ export function Services() {
         <ul className="mt-10 sm:mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:mt-20 md:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <Reveal as="li" key={s.n} delay={i * 80} className="group relative flex h-full flex-col bg-background">
-              <a href="#contact" className="flex flex-1 flex-col p-5 sm:p-6 transition-colors duration-500 hover:bg-secondary/70 md:p-8">
+              <a href="#contact-form" className="flex flex-1 flex-col p-5 sm:p-6 transition-colors duration-500 hover:bg-secondary/70 md:p-8">
                 <div className="flex items-start justify-between">
                   <span className="text-xs tracking-[0.18em] text-muted-foreground">{s.n}</span>
                   <span className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-500 ease-out-expo group-hover:rotate-45 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background">

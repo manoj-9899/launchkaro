@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { ArrowRight, Check, Clock, Minus, Sparkles } from 'lucide-react'
+import { Check, MessageCircle, Sparkles } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { cn } from '@/lib/utils'
@@ -9,91 +8,92 @@ import { cn } from '@/lib/utils'
 type Plan = {
   id: string
   name: string
-  delivery: string
-  tagline: string
-  oneTimePrice: string
-  maintenancePrice: string
   popular?: boolean
-  included: string[]
-  notIncluded: string[]
+  description: string
+  price: string
+  priceLabel: string
+  stats: {
+    pages: string
+    delivery: string
+    revisions: string
+  }
+  features: string[]
 }
 
 const plans: Plan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    delivery: '7-day delivery',
-    tagline: 'Perfect for getting online fast',
-    oneTimePrice: '₹9,999',
-    maintenancePrice: '+ ₹1,499/mo',
-    included: [
-      '3 pages',
+    description: 'A professional website to establish your online presence.',
+    price: '₹9,999',
+    priceLabel: 'one-time',
+    stats: {
+      pages: '3',
+      delivery: '7 days',
+      revisions: '1',
+    },
+    features: [
       'Custom design',
       'Mobile responsive',
       'Contact form',
-      '1 revision',
-    ],
-    notIncluded: [
-      'SEO basics',
-      'Google Maps + WhatsApp integration',
-      'Domain & hosting help',
+      'WhatsApp integration',
+      'Website deployment & launch',
     ],
   },
   {
     id: 'pro',
     name: 'Pro',
-    delivery: '10-day delivery',
-    tagline: 'Best for businesses serious about growth',
-    oneTimePrice: '₹17,999',
-    maintenancePrice: '+ ₹2,499/mo',
     popular: true,
-    included: [
-      '5 pages',
-      'Custom design',
-      'Mobile responsive',
-      'Contact form',
-      'SEO basics',
-      'Google Maps + WhatsApp integration',
-      '2 revisions',
-    ],
-    notIncluded: [
-      'Domain & hosting help',
+    description: 'Built to get found and turn visitors into enquiries.',
+    price: '₹17,999',
+    priceLabel: 'one-time',
+    stats: {
+      pages: '5',
+      delivery: '10 days',
+      revisions: '2',
+    },
+    features: [
+      'Everything in Starter',
+      'Basic SEO setup',
+      'Google Maps integration',
+      'Enquiry-focused sections',
+      'Website deployment & launch',
     ],
   },
   {
     id: 'premium',
     name: 'Premium',
-    delivery: '14-day delivery',
-    tagline: 'For brands that want everything done right',
-    oneTimePrice: '₹24,999',
-    maintenancePrice: '+ ₹3,499/mo',
-    included: [
-      '8 pages',
-      'Custom design',
-      'Mobile responsive',
-      'Contact form',
-      'SEO basics',
-      'Google Maps + WhatsApp integration',
-      'Domain & hosting help',
-      '3 revisions',
+    description: 'A complete, done-for-you website launch.',
+    price: '₹24,999',
+    priceLabel: 'one-time',
+    stats: {
+      pages: '8',
+      delivery: '14 days',
+      revisions: '3',
+    },
+    features: [
+      'Everything in Pro',
+      'Domain setup assistance',
+      'Hosting setup assistance',
+      'Google Analytics setup',
+      'SEO setup',
+      'Content structure assistance',
+      'Priority support',
+      'Website deployment & launch',
     ],
-    notIncluded: [],
   },
 ]
 
 export function Pricing() {
-  const [billingType, setBillingType] = useState<'website' | 'maintenance'>('website')
-
-  const getWhatsAppLink = (planName: string) => {
-    const mode = billingType === 'website' ? 'Website Only' : 'Website + Maintenance'
+  const getWhatsAppLink = (planName: string, price: string) => {
     const message = encodeURIComponent(
-      `Hi LaunchKaro, I'm interested in the ${planName} plan (${mode}). Can we discuss getting started?`,
+      `Hi LaunchKaro, I'm interested in the ${planName} plan (${price}). Can we discuss getting started?`
     )
     return `https://wa.me/919423509134?text=${message}`
   }
 
   const advisoryWhatsAppLink = `https://wa.me/919423509134?text=${encodeURIComponent(
-    "Hi LaunchKaro, I'm not sure which website plan fits my business best. Can you help me decide?",
+    "Hi LaunchKaro, I'm not sure which website plan fits my business best. Can you help me decide?"
   )}`
 
   return (
@@ -116,69 +116,15 @@ export function Pricing() {
           }
         />
 
-        {/* Plan mode toggle */}
-        <Reveal delay={120} className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-3">
-          <div
-            role="tablist"
-            aria-label="Pricing billing options"
-            className="inline-flex rounded-full border border-border bg-secondary/60 p-1 shadow-xs"
-          >
-            <button
-              type="button"
-              role="tab"
-              aria-selected={billingType === 'website'}
-              onClick={() => setBillingType('website')}
-              className={cn(
-                'relative rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-all duration-300',
-                billingType === 'website'
-                  ? 'bg-foreground text-background shadow-xs'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              Website Only
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={billingType === 'maintenance'}
-              onClick={() => setBillingType('maintenance')}
-              className={cn(
-                'relative flex items-center gap-1.5 rounded-full px-5 py-2 text-xs sm:text-sm font-medium transition-all duration-300',
-                billingType === 'maintenance'
-                  ? 'bg-foreground text-background shadow-xs'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              <span>Website + Maintenance</span>
-              <span
-                className={cn(
-                  'hidden sm:inline-flex rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase',
-                  billingType === 'maintenance'
-                    ? 'bg-background/20 text-background'
-                    : 'bg-foreground/10 text-foreground/80',
-                )}
-              >
-                Care Plan
-              </span>
-            </button>
-          </div>
-
-          <p className="text-xs text-muted-foreground/80 text-center">
-            {billingType === 'website'
-              ? 'One-time setup with zero recurring obligations.'
-              : 'Includes monthly content updates, speed optimization, and backups.'}
-          </p>
-        </Reveal>
-
         {/* Pricing Cards Grid */}
-        <div className="mt-10 sm:mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8 items-stretch">
+        <div className="mt-10 sm:mt-14 grid gap-6 lg:grid-cols-3 lg:gap-8 items-stretch">
           {plans.map((plan, i) => {
             const isPro = plan.popular
 
             return (
               <Reveal
                 key={plan.id}
-                delay={160 + i * 80}
+                delay={140 + i * 80}
                 className="flex"
               >
                 <div
@@ -186,10 +132,10 @@ export function Pricing() {
                     'relative flex w-full flex-col justify-between rounded-2xl border transition-all duration-500 ease-out-expo p-6 sm:p-8',
                     isPro
                       ? 'border-foreground/40 bg-background shadow-xl shadow-foreground/5 ring-1 ring-foreground/20 lg:-translate-y-2'
-                      : 'border-border bg-card/60 hover:border-foreground/30 hover:bg-card',
+                      : 'border-border bg-card/60 hover:border-foreground/30 hover:bg-card'
                   )}
                 >
-                  {/* Pro "Most Popular" Ribbon / Badge */}
+                  {/* Pro "MOST POPULAR" Badge */}
                   {isPro && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1 text-[11px] font-semibold tracking-wider text-background uppercase shadow-sm">
@@ -200,99 +146,79 @@ export function Pricing() {
                   )}
 
                   <div>
-                    {/* Header info */}
+                    {/* Header Info */}
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
                         {plan.name}
                       </h3>
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-                        <Clock className="size-3" />
-                        {plan.delivery}
+                    </div>
+
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground text-pretty min-h-[44px]">
+                      {plan.description}
+                    </p>
+
+                    {/* Price Display */}
+                    <div className="mt-5 border-y border-border/70 py-4 flex items-baseline gap-2">
+                      <span className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
+                        {plan.price}
+                      </span>
+                      <span className="text-xs font-mono tracking-wide text-muted-foreground uppercase">
+                        {plan.priceLabel}
                       </span>
                     </div>
 
-                    <p className="mt-2.5 text-sm text-muted-foreground text-pretty min-h-[40px]">
-                      {plan.tagline}
-                    </p>
-
-                    {/* Pricing Display */}
-                    <div className="mt-6 border-y border-border/80 py-5">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-                          {plan.oneTimePrice}
-                        </span>
-                        {billingType === 'maintenance' && (
-                          <span className="text-sm font-medium text-foreground/75">
-                            {plan.maintenancePrice}
-                          </span>
-                        )}
+                    {/* Stats Summary Block */}
+                    <div className="mt-5 grid grid-cols-3 gap-2 rounded-xl border border-border/70 bg-secondary/50 p-3 text-center">
+                      <div>
+                        <span className="block text-[10px] font-mono uppercase tracking-wider text-muted-foreground">PAGES</span>
+                        <span className="text-sm font-semibold text-foreground font-mono">{plan.stats.pages}</span>
                       </div>
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        {billingType === 'website'
-                          ? 'One-time project investment'
-                          : 'Initial build + monthly care & updates'}
-                      </p>
+                      <div className="border-x border-border/60">
+                        <span className="block text-[10px] font-mono uppercase tracking-wider text-muted-foreground">DELIVERY</span>
+                        <span className="text-sm font-semibold text-foreground font-mono">{plan.stats.delivery}</span>
+                      </div>
+                      <div>
+                        <span className="block text-[10px] font-mono uppercase tracking-wider text-muted-foreground">REVISIONS</span>
+                        <span className="text-sm font-semibold text-foreground font-mono">{plan.stats.revisions}</span>
+                      </div>
                     </div>
 
-                    {/* Features list */}
-                    <div className="mt-6 space-y-4">
-                      <div>
-                        <span className="text-[11px] font-semibold tracking-wider text-foreground/80 uppercase">
-                          What&apos;s Included
-                        </span>
-                        <ul className="mt-3 space-y-2.5">
-                          {plan.included.map((item, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-2.5 text-sm text-foreground/90"
-                            >
-                              <span className="mt-0.5 flex size-4.5 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-foreground">
-                                <Check className="size-3 stroke-[2.5]" />
-                              </span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {plan.notIncluded.length > 0 && (
-                        <div className="pt-2">
-                          <span className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
-                            Not Included
-                          </span>
-                          <ul className="mt-3 space-y-2.5">
-                            {plan.notIncluded.map((item, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-start gap-2.5 text-sm text-muted-foreground/70"
-                              >
-                                <span className="mt-0.5 flex size-4.5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground/60">
-                                  <Minus className="size-3" />
-                                </span>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                    {/* Features List */}
+                    <div className="mt-6 space-y-3">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-foreground/75 block">
+                        Included Features
+                      </span>
+                      <ul className="space-y-2.5">
+                        {plan.features.map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2.5 text-sm text-foreground/90"
+                          >
+                            <span className="mt-0.5 flex size-4.5 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-foreground">
+                              <Check className="size-3 stroke-[2.5]" />
+                            </span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
-                  {/* CTA Action button */}
-                  <div className="mt-8 pt-4">
+                  {/* Primary WhatsApp CTA Action Button */}
+                  <div className="mt-8 pt-2">
                     <a
-                      href={getWhatsAppLink(plan.name)}
+                      href={getWhatsAppLink(plan.name, plan.price)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
                         'group flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-medium tracking-tight transition-all duration-300 ease-out-expo active:scale-[0.98]',
                         isPro
                           ? 'bg-foreground text-background hover:bg-foreground/90 shadow-md shadow-foreground/10'
-                          : 'border border-foreground/25 bg-background text-foreground hover:border-foreground hover:bg-foreground hover:text-background',
+                          : 'border border-foreground/25 bg-background text-foreground hover:border-foreground hover:bg-foreground hover:text-background'
                       )}
                     >
-                      <span>Get Started</span>
-                      <ArrowRight className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-1" />
+                      <MessageCircle className={cn('size-4 shrink-0', isPro ? 'text-emerald-400' : 'text-emerald-500')} />
+                      <span>Start on WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -302,7 +228,7 @@ export function Pricing() {
         </div>
 
         {/* Footer line below cards */}
-        <Reveal delay={360} className="mt-12 sm:mt-16 text-center">
+        <Reveal delay={320} className="mt-12 sm:mt-16 text-center">
           <p className="text-sm sm:text-base text-muted-foreground">
             Not sure which plan fits?{' '}
             <a

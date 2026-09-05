@@ -1,4 +1,5 @@
-import Image from 'next/image'
+'use client'
+
 import type { CSSProperties } from 'react'
 import { MagneticButton } from '@/components/magnetic-button'
 
@@ -86,7 +87,11 @@ export function Hero() {
 
             <div className="fade-up flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:gap-3.5" style={d(800)}>
               <MagneticButton
-                href="#contact"
+                href="#contact-form"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.dispatchEvent(new CustomEvent('open-contact-modal'))
+                }}
                 className="w-full h-12.5 sm:h-13.5 sm:w-auto md:h-12 text-[15px] sm:text-sm font-medium"
               >
                 Start a project
@@ -101,47 +106,6 @@ export function Hero() {
               </MagneticButton>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Visual Showcase Image & Capability strip below the fold */}
-      <div className="mx-auto max-w-7xl px-4 pt-8 pb-16 sm:px-6 md:px-10 md:pt-14 md:pb-24">
-        {/* Visual Showcase Image */}
-        <div className="fade-up" style={d(900)}>
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-secondary sm:aspect-[16/10] md:aspect-[21/9] md:rounded-3xl">
-            <Image
-              src="/images/hero.png"
-              alt="LaunchKaro showcase preview"
-              aria-hidden
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1280px"
-              className="object-cover transition-transform duration-[1.6s] ease-out-expo group-hover:scale-[1.03]"
-            />
-            <div className="absolute top-3 right-3 flex items-center gap-2 rounded-full border border-white/40 bg-white/80 px-2.5 py-1 text-[11px] backdrop-blur-md md:top-6 md:right-6 md:px-3 md:py-1.5 md:text-xs">
-              <span className="size-1.5 rounded-full bg-signal" />
-              Available for new projects
-            </div>
-          </div>
-        </div>
-
-        {/* Capability strip */}
-        <div className="fade-up mt-10 border-t border-border pt-6 sm:mt-12 sm:pt-8 md:mt-16" style={d(1000)}>
-          <p className="mb-4 sm:mb-6 text-xs tracking-[0.18em] text-muted-foreground uppercase">What we help with</p>
-          <ul className="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-2.5 sm:gap-y-3 text-sm text-muted-foreground md:gap-x-14">
-            {[
-              'Business websites',
-              'Brand identity',
-              'Google visibility',
-              'Speed & mobile',
-              'Ongoing support',
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-2.5">
-                <span className="size-1 rounded-full bg-foreground/40" />
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
