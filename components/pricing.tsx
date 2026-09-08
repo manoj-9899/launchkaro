@@ -4,6 +4,7 @@ import { Check, MessageCircle, Sparkles } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { cn } from '@/lib/utils'
+import { getPlanWhatsAppUrl, getAdvisoryWhatsAppUrl } from '@/lib/constants'
 
 type Plan = {
   id: string
@@ -85,16 +86,8 @@ const plans: Plan[] = [
 ]
 
 export function Pricing() {
-  const getWhatsAppLink = (planName: string, price: string) => {
-    const message = encodeURIComponent(
-      `Hi LaunchKaro, I'm interested in the ${planName} plan (${price}). Can we discuss getting started?`
-    )
-    return `https://wa.me/919423509134?text=${message}`
-  }
-
-  const advisoryWhatsAppLink = `https://wa.me/919423509134?text=${encodeURIComponent(
-    "Hi LaunchKaro, I'm not sure which website plan fits my business best. Can you help me decide?"
-  )}`
+  const getWhatsAppLink = (planName: string, price: string) => getPlanWhatsAppUrl(planName, price)
+  const advisoryWhatsAppLink = getAdvisoryWhatsAppUrl()
 
   return (
     <section id="pricing" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">

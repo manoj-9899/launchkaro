@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, CheckCircle2, MessageCircle, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { getFormWhatsAppUrl } from '@/lib/constants'
+import { sendLeadAction } from '@/app/actions/send-lead'
 
 const projectTypes = [
   'Website',
@@ -25,14 +27,34 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const backdropRef = useRef<HTMLDivElement>(null)
+  const modalContainerRef = useRef<HTMLDivElement>(null)
 
-  // Handle Escape key and body scroll lock
+  // Handle Escape key, focus trapping, and body scroll lock
   useEffect(() => {
     if (!isOpen) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
+        return
+      }
+
+      if (e.key === 'Tab' && modalContainerRef.current) {
+        const focusables = modalContainerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
       }
     }
 
@@ -47,29 +69,27 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   if (!isOpen) return null
 
-  const getFormattedWhatsAppMessage = () => {
-    return encodeURIComponent(
-      `*New Conversation from LaunchKaro Website*\n\n` +
-        `*I need:* ${selectedType}\n` +
-        `*Name:* ${name || 'N/A'}\n` +
-        `*Phone/WhatsApp:* ${phone || 'N/A'}\n` +
-        `*Notes:* ${message || 'No additional details provided'}`
-    )
-  }
+  const whatsappLink = getFormWhatsAppUrl({ selectedType, name, phone, message })
 
-  const whatsappLink = `https://wa.me/919423509134?text=${getFormattedWhatsAppMessage()}`
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!name.trim() || !phone.trim()) return
+    if (!name.trim() || !phone.trim() || isSubmitting) return
 
     setIsSubmitting(true)
 
-    // Simulate submission delay for interactive polish
-    setTimeout(() => {
+    try {
+      await sendLeadAction({
+        selectedType,
+        name,
+        phone,
+        message,
+      })
+    } catch (err) {
+      console.error('Error submitting lead form:', err)
+    } finally {
       setIsSubmitting(false)
       setIsSubmitted(true)
-    }, 500)
+    }
   }
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -87,7 +107,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
       aria-labelledby="modal-title"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-sm animate-in fade-in duration-300 overflow-y-auto"
     >
-      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl border border-background/20 bg-foreground text-background shadow-2xl p-6 sm:p-8 space-y-5 animate-in zoom-in-95 duration-300">
+      <div
+        ref={modalContainerRef}
+        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl border border-background/20 bg-foreground text-background shadow-2xl p-6 sm:p-8 space-y-5 animate-in zoom-in-95 duration-300"
+      >
         {/* Close Button */}
         <button
           type="button"

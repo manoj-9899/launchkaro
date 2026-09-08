@@ -304,7 +304,7 @@ export function Work() {
                       <div className="group/image relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] w-full overflow-hidden bg-secondary">
                         <Image
                           src={project.image}
-                          alt={`${project.title} - ${project.category}`}
+                          alt={`${project.title} ${project.category} website design showcase`}
                           fill
                           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 840px"
                           className="object-cover transition-transform duration-[1.6s] ease-out-expo group-hover/image:scale-[1.04]"
@@ -320,6 +320,7 @@ export function Work() {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            tabIndex={isActive ? 0 : -1}
                             aria-label={`Open live site for ${project.title}`}
                             className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5 hover:bg-foreground hover:text-background"
                           >
@@ -348,6 +349,7 @@ export function Work() {
                             href={isActive ? project.liveUrl : undefined}
                             target={isActive ? '_blank' : undefined}
                             rel={isActive ? 'noopener noreferrer' : undefined}
+                            tabIndex={isActive ? 0 : -1}
                             className="link-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground transition-colors hover:text-signal shrink-0"
                             onClick={(e) => {
                               if (!isActive) {

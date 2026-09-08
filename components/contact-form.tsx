@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from 'react'
 import { ArrowRight, CheckCircle2, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { getFormWhatsAppUrl } from '@/lib/constants'
+import { sendLeadAction } from '@/app/actions/send-lead'
 
 const projectTypes = [
   'Website',
@@ -19,29 +21,27 @@ export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const getFormattedWhatsAppMessage = () => {
-    return encodeURIComponent(
-      `*New Conversation from LaunchKaro Website*\n\n` +
-        `*I need:* ${selectedType}\n` +
-        `*Name:* ${name || 'N/A'}\n` +
-        `*Phone/WhatsApp:* ${phone || 'N/A'}\n` +
-        `*Notes:* ${message || 'No additional details provided'}`
-    )
-  }
+  const whatsappLink = getFormWhatsAppUrl({ selectedType, name, phone, message })
 
-  const whatsappLink = `https://wa.me/919423509134?text=${getFormattedWhatsAppMessage()}`
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!name.trim() || !phone.trim()) return
+    if (!name.trim() || !phone.trim() || isSubmitting) return
 
     setIsSubmitting(true)
 
-    // Simulate submission delay for interactive polish
-    setTimeout(() => {
+    try {
+      await sendLeadAction({
+        selectedType,
+        name,
+        phone,
+        message,
+      })
+    } catch (err) {
+      console.error('Error submitting lead form:', err)
+    } finally {
       setIsSubmitting(false)
       setIsSubmitted(true)
-    }, 500)
+    }
   }
 
   if (isSubmitted) {

@@ -1,13 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { SITE_CONFIG } from '@/lib/constants'
 
 const links = [
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
-  { label: 'Process', href: '#process' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Work', href: '/work' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Blog', href: '/blog' },
 ]
 
 export function SiteHeader() {
@@ -39,22 +41,22 @@ export function SiteHeader() {
               : 'mt-0 max-w-7xl border border-transparent px-4 py-4 sm:px-6 sm:py-5 md:px-10 md:py-7',
           )}
         >
-          <a href="#" className="flex items-center gap-2.5 py-1" aria-label="LaunchKaro home">
+          <Link href="/" className="flex items-center gap-2.5 py-1" aria-label="LaunchKaro home">
             <span className="relative size-2.5 rounded-full bg-foreground">
               <span className="absolute inset-0 animate-ping rounded-full bg-foreground/40 [animation-duration:2.4s]" />
             </span>
             <span className="text-sm font-semibold tracking-tight">LaunchKaro</span>
-          </a>
+          </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="link-underline py-1 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -105,7 +107,7 @@ export function SiteHeader() {
       >
         <nav aria-label="Mobile" className="flex flex-col">
           {links.map((l, i) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
@@ -117,7 +119,7 @@ export function SiteHeader() {
             >
               {l.label}
               <span className="font-sans text-xs text-muted-foreground">0{i + 1}</span>
-            </a>
+            </Link>
           ))}
         </nav>
         <div
@@ -138,7 +140,7 @@ export function SiteHeader() {
           >
             Start a project
           </a>
-          <p className="text-center text-xs text-muted-foreground">launchkaro.team@gmail.com</p>
+          <p className="text-center text-xs text-muted-foreground">{SITE_CONFIG.contact.email}</p>
         </div>
       </div>
     </>

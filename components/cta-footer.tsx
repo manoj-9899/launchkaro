@@ -1,12 +1,34 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { ArrowUpRight, MessageCircle, Phone } from 'lucide-react'
 import { MagneticButton } from '@/components/magnetic-button'
 import { Reveal } from '@/components/reveal'
 import { ContactModal } from '@/components/contact-modal'
+import { SITE_CONFIG } from '@/lib/constants'
 
-const sitemap = ['Services', 'Work', 'Process', 'Pricing', 'Contact']
+const serviceLinks = [
+  { label: 'Web Design Latur', href: '/web-design-latur' },
+  { label: 'Web Development', href: '/web-development-latur' },
+  { label: 'Local SEO Setup', href: '/local-seo-latur' },
+  { label: 'Pricing Packages', href: '/pricing' },
+]
+
+const industryLinks = [
+  { label: 'Restaurants & Cafés', href: '/websites-for-restaurants' },
+  { label: 'Real Estate Portals', href: '/websites-for-real-estate' },
+  { label: 'Coaching Institutes', href: '/websites-for-coaching-institutes' },
+  { label: 'Event Venues', href: '/websites-for-event-venues' },
+  { label: 'Medical Clinics', href: '/websites-for-clinics' },
+]
+
+const companyLinks = [
+  { label: 'Selected Work', href: '/work' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Knowledge Hub', href: '/blog' },
+  { label: 'Process', href: '/#process' },
+]
 
 export function CtaFooter() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -82,9 +104,9 @@ export function CtaFooter() {
                     </MagneticButton>
 
                     <div className="flex w-full items-center gap-2 sm:gap-2.5 sm:w-auto">
-                      {/* WhatsApp direct link (unaffected) */}
+                      {/* WhatsApp direct link */}
                       <MagneticButton
-                        href="https://wa.me/919423509134"
+                        href={SITE_CONFIG.social.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         variant="outline-light"
@@ -97,9 +119,9 @@ export function CtaFooter() {
                         </span>
                       </MagneticButton>
 
-                      {/* Call direct link (unaffected) */}
+                      {/* Call direct link */}
                       <MagneticButton
-                        href="tel:+919423509134"
+                        href={`tel:${SITE_CONFIG.contact.phone}`}
                         variant="outline-light"
                         icon={false}
                         className="flex-1 px-3.5 sm:px-5 sm:flex-initial"
@@ -117,62 +139,82 @@ export function CtaFooter() {
           </Reveal>
 
           {/* Footer grid */}
-          <div className="mt-12 sm:mt-16 md:mt-24 grid gap-8 sm:gap-10 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <a href="#" className="flex items-center gap-2.5 py-1" aria-label="LaunchKaro home">
+          <div className="mt-12 sm:mt-16 md:mt-24 grid gap-8 sm:gap-10 grid-cols-2 md:grid-cols-12">
+            <div className="col-span-2 md:col-span-4">
+              <Link href="/" className="flex items-center gap-2.5 py-1" aria-label="LaunchKaro home">
                 <span className="size-2.5 rounded-full bg-foreground" />
-                <span className="text-sm font-semibold tracking-tight">LaunchKaro</span>
-              </a>
+                <span className="text-sm font-semibold tracking-tight">{SITE_CONFIG.name}</span>
+              </Link>
               <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
                 A digital agency in Latur building websites that help local businesses get found and get chosen.
               </p>
               <div className="mt-6 flex flex-col items-start gap-2">
                 <div className="block">
                   <a
-                    href="mailto:launchkaro.team@gmail.com"
-                    className="link-underline inline-flex items-center gap-1.5 text-base sm:text-lg font-medium tracking-tight"
+                    href={`mailto:${SITE_CONFIG.contact.email}`}
+                    className="link-underline inline-flex items-center gap-1.5 text-sm sm:text-base font-medium tracking-tight"
                   >
-                    launchkaro.team@gmail.com
+                    {SITE_CONFIG.contact.email}
                     <ArrowUpRight className="size-4 shrink-0" />
                   </a>
                 </div>
                 <div className="block">
                   <a
-                    href="tel:+919423509134"
+                    href={`tel:${SITE_CONFIG.contact.phone}`}
                     className="link-underline inline-block py-0.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    +91 94235 09134
+                    {SITE_CONFIG.contact.phoneDisplay}
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="md:col-span-3 md:col-start-7">
-              <h3 className="text-xs tracking-[0.18em] text-muted-foreground uppercase">Sitemap</h3>
+            <div className="col-span-1 md:col-span-3">
+              <h3 className="text-xs tracking-[0.18em] text-muted-foreground uppercase font-mono">Services</h3>
               <ul className="mt-4 flex flex-col gap-2">
-                {sitemap.map((item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="link-underline inline-block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                {serviceLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="link-underline inline-block py-1 text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {item}
-                    </a>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="md:col-span-3">
-              <h3 className="text-xs tracking-[0.18em] text-muted-foreground uppercase">Based in</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Latur, Maharashtra
-                <br />
-                India
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Working with businesses across Maharashtra, remotely and in person.
-              </p>
+            <div className="col-span-1 md:col-span-3">
+              <h3 className="text-xs tracking-[0.18em] text-muted-foreground uppercase font-mono">Industries</h3>
+              <ul className="mt-4 flex flex-col gap-2">
+                {industryLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="link-underline inline-block py-1 text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="col-span-2 sm:col-span-1 md:col-span-2">
+              <h3 className="text-xs tracking-[0.18em] text-muted-foreground uppercase font-mono">Explore</h3>
+              <ul className="mt-4 flex flex-col gap-2">
+                {companyLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="link-underline inline-block py-1 text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
