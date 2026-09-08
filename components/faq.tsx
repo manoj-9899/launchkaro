@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, MessageCircle, Phone } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { cn } from '@/lib/utils'
+import { SITE_CONFIG } from '@/lib/constants'
 
 type FAQItem = {
   question: string
@@ -52,7 +53,7 @@ export function FAQ() {
   }
 
   return (
-    <section id="faq" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">
+    <section id="faq" className="scroll-mt-24 px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           index="05"
@@ -65,45 +66,90 @@ export function FAQ() {
           }
         />
 
-        <div className="mt-10 sm:mt-14 max-w-4xl space-y-4">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i
+        <div className="mt-6 sm:mt-8 md:mt-10 grid gap-6 md:grid-cols-12 md:gap-8 lg:gap-10 items-start">
+          {/* Left Column: Direct Assistance Card */}
+          <Reveal delay={100} className="md:col-span-4 lg:col-span-4">
+            <div className="rounded-[22px] border border-border/80 bg-card p-6 sm:p-7 space-y-4 shadow-xs">
+              <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/80 block">
+                Need more help?
+              </span>
+              <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
+                Have a different question?
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Can&apos;t find the answer you&apos;re looking for? Reach out directly and we&apos;ll be happy to help.
+              </p>
+              <div className="pt-2 flex flex-col gap-2.5">
+                <a
+                  href={SITE_CONFIG.social.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-all duration-300 ease-out-expo hover:bg-foreground/90 active:scale-[0.98] shadow-xs"
+                >
+                  <MessageCircle className="size-4 text-emerald-400 shrink-0" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+                <a
+                  href={`tel:${SITE_CONFIG.contact.phone}`}
+                  className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-4 text-xs sm:text-sm font-medium text-muted-foreground transition-all duration-300 ease-out-expo hover:border-foreground/30 hover:bg-secondary/60 hover:text-foreground active:scale-[0.98]"
+                >
+                  <Phone className="size-3.5 text-muted-foreground shrink-0" />
+                  <span>Call {SITE_CONFIG.contact.phoneDisplay}</span>
+                </a>
+              </div>
+            </div>
+          </Reveal>
 
-            return (
-              <Reveal key={i} delay={80 + i * 40}>
-                <div className="rounded-2xl border border-border/80 bg-card/60 transition-all duration-300 hover:border-foreground/30">
-                  <button
-                    type="button"
-                    onClick={() => toggle(i)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${i}`}
-                    className="flex w-full items-center justify-between p-5 sm:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 rounded-2xl"
+          {/* Right Column: Accordion Items */}
+          <div className="md:col-span-8 lg:col-span-8 space-y-3 sm:space-y-3.5">
+            {faqs.map((faq, i) => {
+              const isOpen = openIndex === i
+
+              return (
+                <Reveal key={i} delay={80 + i * 40}>
+                  <div
+                    className={cn(
+                      'rounded-[22px] border transition-all duration-300 ease-out-expo',
+                      isOpen
+                        ? 'border-foreground/35 bg-background shadow-xs ring-1 ring-foreground/10'
+                        : 'border-border/70 bg-card/40 hover:border-foreground/30 hover:bg-card/80'
+                    )}
                   >
-                    <span className="text-base sm:text-lg font-medium tracking-tight text-foreground pr-4">
-                      {faq.question}
-                    </span>
-                    <span
-                      className={cn(
-                        'flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-background text-muted-foreground transition-transform duration-300',
-                        isOpen && 'rotate-180 bg-foreground text-background border-foreground'
-                      )}
+                    <button
+                      type="button"
+                      onClick={() => toggle(i)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${i}`}
+                      className="flex w-full min-h-[68px] sm:min-h-[72px] items-center justify-between px-6 py-4 sm:px-7 sm:py-4.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 rounded-[22px]"
                     >
-                      <ChevronDown className="size-4" />
-                    </span>
-                  </button>
+                      <span className="text-base sm:text-[17px] font-medium sm:font-semibold tracking-tight text-foreground pr-4">
+                        {faq.question}
+                      </span>
+                      <span
+                        className={cn(
+                          'flex size-9 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ease-out-expo',
+                          isOpen
+                            ? 'rotate-180 bg-foreground text-background border-foreground shadow-xs'
+                            : 'border-border bg-background text-muted-foreground hover:border-foreground/40'
+                        )}
+                      >
+                        <ChevronDown className="size-[15px]" />
+                      </span>
+                    </button>
 
-                  {isOpen && (
-                    <div
-                      id={`faq-answer-${i}`}
-                      className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm sm:text-base leading-relaxed text-muted-foreground border-t border-border/40 pt-4"
-                    >
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              </Reveal>
-            )
-          })}
+                    {isOpen && (
+                      <div
+                        id={`faq-answer-${i}`}
+                        className="px-6 pb-5 sm:px-7 sm:pb-6 text-sm sm:text-[15px] leading-[24px] text-muted-foreground border-t border-border/40 pt-3.5 transition-all duration-300"
+                      >
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

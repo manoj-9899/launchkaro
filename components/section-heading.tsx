@@ -21,7 +21,10 @@ export function SectionHeading({ index, label, title, aside, className }: Sectio
       <Reveal
         as="h2"
         delay={80}
-        className="max-w-3xl text-[clamp(1.75rem,5.2vw,3.75rem)] leading-[1.05] font-medium tracking-[-0.035em] text-balance md:col-span-7"
+        className={cn(
+          'text-[clamp(1.75rem,5.2vw,3.75rem)] leading-[1.05] font-medium tracking-[-0.035em] text-balance',
+          aside ? 'md:col-span-7' : 'md:col-span-9'
+        )}
       >
         {title}
       </Reveal>
