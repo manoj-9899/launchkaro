@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { MagneticButton } from '@/components/magnetic-button'
+import { ProjectCard } from '@/components/project-card'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -126,25 +127,15 @@ export default function EventVenueWebsitesPage() {
               }
             />
 
-            <div className="mt-12 max-w-2xl">
-              <Reveal className="group rounded-2xl border border-border bg-card overflow-hidden p-6 space-y-4">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-secondary">
-                  <Image
-                    src="/images/work-3.webp"
-                    alt="Patel Function Hall event venue website design showcase"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-baseline justify-between pt-2">
-                  <div>
-                    <h3 className="text-2xl font-medium text-foreground">Patel Function Hall</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Events & Venues</p>
-                  </div>
-                  <Link href="/work/patel-function-hall" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
-                    View project case study <ArrowUpRight className="size-4" />
-                  </Link>
-                </div>
+            <div className="mt-12 max-w-xl">
+              <Reveal>
+                <ProjectCard
+                  title="Patel Function Hall"
+                  category="Events & Venues"
+                  image="/images/work-3.webp"
+                  href="/work/patel-function-hall"
+                  liveUrl="https://patel-function-hall-demo-1.vercel.app/"
+                />
               </Reveal>
             </div>
           </div>

@@ -1,12 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
 import { SiteHeader } from '@/components/site-header'
 import { CtaFooter } from '@/components/cta-footer'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Reveal } from '@/components/reveal'
-import { SectionHeading } from '@/components/section-heading'
+import { ProjectCard } from '@/components/project-card'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -105,50 +102,21 @@ export default function WorkOverviewPage() {
 
         {/* Project Grid */}
         <section className="px-4 py-16 sm:px-6 md:px-10 border-t border-border/70">
-          <div className="mx-auto max-w-7xl space-y-12">
-            {projects.map((p, idx) => (
-              <Reveal key={p.slug} delay={idx * 60} className="group rounded-2xl border border-border bg-card overflow-hidden p-6 sm:p-8 space-y-6">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-secondary">
-                  <Image
-                    src={p.image}
-                    alt={`${p.title} ${p.category} website design showcase`}
-                    fill
-                    priority={idx === 0}
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-8 sm:gap-10 md:grid-cols-2">
+              {projects.map((p, idx) => (
+                <Reveal key={p.slug} delay={idx * 60}>
+                  <ProjectCard
+                    title={p.title}
+                    category={p.category}
+                    image={p.image}
+                    href={`/work/${p.slug}`}
+                    liveUrl={p.liveUrl}
+                    priority={idx < 2}
                   />
-                </div>
-
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-medium text-foreground">{p.title}</h2>
-                    <p className="text-sm text-muted-foreground font-mono mt-1">
-                      {p.category}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-3 max-w-2xl leading-relaxed">
-                      {p.tagline}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-4 shrink-0">
-                    <Link
-                      href={`/work/${p.slug}`}
-                      className="link-underline inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
-                    >
-                      Read project details <ArrowUpRight className="size-4" />
-                    </Link>
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4.5 py-2 text-xs sm:text-sm font-medium text-background hover:bg-foreground/85 transition-all duration-300 shadow-sm active:scale-95"
-                    >
-                      <span>Live demo</span>
-                      <ArrowUpRight className="size-3.5 text-background" />
-                    </a>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       </main>

@@ -15,51 +15,53 @@ import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { cn } from '@/lib/utils'
 
+import { ProjectCard } from '@/components/project-card'
+
 const projects = [
   {
     id: '01',
+    slug: 'nocturne',
     title: 'Nocturne',
     category: 'Fine Dining',
-    tagline: 'Elegant, mood-lit digital experience crafted for a luxury restaurant to showcase menus and table reservations.',
     image: '/images/work-1.webp',
+    href: '/work/nocturne',
     liveUrl: 'https://nocturne-restaurant-website.vercel.app/',
-    tags: ['Fine Dining', 'Menu Showcase', 'Reservations'],
   },
   {
     id: '02',
+    slug: 'atelier-estate',
     title: 'Atelier Estate',
     category: 'Real Estate',
-    tagline: 'Sophisticated property portal designed for premium residential and luxury real estate listings.',
     image: '/images/work-2.webp',
+    href: '/work/atelier-estate',
     liveUrl: 'https://atelier-estate-website.vercel.app/',
-    tags: ['Real Estate', 'Luxury Listings', 'Property Portal'],
   },
   {
     id: '03',
+    slug: 'patel-function-hall',
     title: 'Patel Function Hall',
     category: 'Events & Venues',
-    tagline: 'Event venue website highlighting banquet amenities, booking inquiries, and photo galleries for weddings and celebrations.',
     image: '/images/work-3.webp',
+    href: '/work/patel-function-hall',
     liveUrl: 'https://patel-function-hall-demo-1.vercel.app/',
-    tags: ['Events & Venues', 'Banquet Amenities', 'Inquiries'],
   },
   {
     id: '04',
+    slug: 'spice-palace',
     title: 'Spice Palace',
     category: 'Café & Restaurant',
-    tagline: 'Vibrant restaurant website with menu highlights, location integration, and direct ordering pathways.',
     image: '/images/work-4.webp',
+    href: '/work/spice-palace',
     liveUrl: 'https://spicepalace.netlify.app/',
-    tags: ['Café & Restaurant', 'Menu Highlights', 'Online Ordering'],
   },
   {
     id: '05',
+    slug: 'ascent-academy',
     title: 'Ascent Academy',
     category: 'Education',
-    tagline: 'Modern coaching institute website for entrance exam prep (JEE, NEET), built to showcase programs, faculty, and results with demo class bookings.',
     image: '/images/work-5.webp',
+    href: '/work/ascent-academy',
     liveUrl: 'https://ascent-academy-website.vercel.app/',
-    tags: ['Education', 'JEE & NEET Prep', 'Demo Class Booking'],
   },
 ]
 
@@ -197,25 +199,14 @@ export function Work() {
               className="invisible pointer-events-none mx-auto w-[90vw] sm:w-[82vw] md:w-[68vw] lg:w-[58vw] max-w-[840px] select-none"
               aria-hidden="true"
             >
-              <div className="rounded-2xl md:rounded-3xl border border-transparent">
-                <div className="aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] w-full" />
-                <div className="p-5 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-                    <div className="h-8 text-xl sm:text-2xl md:text-3xl font-medium tracking-tight">
-                      {projects[0].title}
-                    </div>
-                    <div className="h-5 text-xs sm:text-sm">Live demo</div>
+              <div className="rounded-2xl md:rounded-3xl border border-transparent p-4 sm:p-5 md:p-6">
+                <div className="aspect-[16/10] w-full" />
+                <div className="mt-4 sm:mt-5 space-y-1">
+                  <div className="h-8 text-xl sm:text-2xl font-medium tracking-tight">
+                    {projects[0].title}
                   </div>
-                  <p className="text-sm leading-relaxed">
-                    {projects[0].tagline}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                    {projects[0].tags.map((tag) => (
-                      <span key={tag} className="px-3 py-0.5 text-[11px]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <div className="h-5 text-xs sm:text-sm font-mono">{projects[0].category}</div>
+                  <div className="pt-3 h-5 text-xs sm:text-sm font-medium">View project</div>
                 </div>
               </div>
             </div>
@@ -286,94 +277,15 @@ export function Work() {
                       </div>
                     )}
 
-                    {/* Main Cinematic Card Frame */}
-                    <div
-                      className={cn(
-                        'relative overflow-hidden rounded-2xl md:rounded-3xl border bg-card transition-all duration-700',
-                        isActive
-                          ? 'border-border/80 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] ring-1 ring-foreground/5'
-                          : 'border-border/50 shadow-sm'
-                      )}
-                    >
-                      {/* Cinematic Full-Bleed Image Preview Area */}
-                      <div className="group/image relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] w-full overflow-hidden bg-secondary">
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} ${project.category} website design showcase`}
-                          fill
-                          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 840px"
-                          className="object-cover transition-transform duration-[1.6s] ease-out-expo group-hover/image:scale-[1.04]"
-                          priority={index === 0 || index === 1}
-                        />
-
-                        {/* Subtle cinematic gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover/image:opacity-20" />
-
-                        {/* Hover View Button on Active Card */}
-                        {isActive ? (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            tabIndex={isActive ? 0 : -1}
-                            aria-label={`Open live site for ${project.title}`}
-                            className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5 hover:bg-foreground hover:text-background"
-                          >
-                            <ArrowUpRight className="size-4" />
-                          </a>
-                        ) : (
-                          <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/image:opacity-100 group-hover/image:translate-y-0 translate-y-2 md:top-5 md:right-5">
-                            <ArrowUpRight className="size-4" />
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Clean Gallery Info Block */}
-                      <div className="p-5 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
-                        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-                          <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
-                            <h3 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-foreground">
-                              {project.title}
-                            </h3>
-                            <span className="text-xs sm:text-sm text-muted-foreground font-mono">
-                              — {project.category}
-                            </span>
-                          </div>
-
-                          <a
-                            href={isActive ? project.liveUrl : undefined}
-                            target={isActive ? '_blank' : undefined}
-                            rel={isActive ? 'noopener noreferrer' : undefined}
-                            tabIndex={isActive ? 0 : -1}
-                            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-xs sm:text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/85 active:scale-95 shrink-0 shadow-sm"
-                            onClick={(e) => {
-                              if (!isActive) {
-                                e.preventDefault()
-                              }
-                            }}
-                          >
-                            Live demo
-                            <ArrowUpRight className="size-3.5 text-background" />
-                          </a>
-                        </div>
-
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-1">
-                          {project.tagline}
-                        </p>
-
-                        {/* Project Tags */}
-                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full border border-border/60 bg-secondary/50 px-3 py-0.5 text-[11px] text-muted-foreground font-mono"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                    <ProjectCard
+                      title={project.title}
+                      category={project.category}
+                      image={project.image}
+                      href={isActive ? project.href : ''}
+                      liveUrl={project.liveUrl}
+                      priority={index === 0 || index === 1}
+                      isActive={isActive}
+                    />
                   </div>
                 )
               })}

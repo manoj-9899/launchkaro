@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { MagneticButton } from '@/components/magnetic-button'
+import { ProjectCard } from '@/components/project-card'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -129,44 +130,24 @@ export default function RestaurantWebsitesPage() {
             />
 
             <div className="mt-12 grid gap-8 md:grid-cols-2">
-              <Reveal className="group rounded-2xl border border-border bg-card overflow-hidden p-6 space-y-4">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-secondary">
-                  <Image
-                    src="/images/work-1.webp"
-                    alt="Nocturne fine dining website design showcase"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-baseline justify-between pt-2">
-                  <div>
-                    <h3 className="text-2xl font-medium text-foreground">Nocturne</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Fine Dining</p>
-                  </div>
-                  <Link href="/work/nocturne" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
-                    View project case study <ArrowUpRight className="size-4" />
-                  </Link>
-                </div>
+              <Reveal>
+                <ProjectCard
+                  title="Nocturne"
+                  category="Fine Dining"
+                  image="/images/work-1.webp"
+                  href="/work/nocturne"
+                  liveUrl="https://nocturne-restaurant-website.vercel.app/"
+                />
               </Reveal>
 
-              <Reveal delay={100} className="group rounded-2xl border border-border bg-card overflow-hidden p-6 space-y-4">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-secondary">
-                  <Image
-                    src="/images/work-4.webp"
-                    alt="Spice Palace restaurant website design showcase"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-baseline justify-between pt-2">
-                  <div>
-                    <h3 className="text-2xl font-medium text-foreground">Spice Palace</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Café & Restaurant</p>
-                  </div>
-                  <Link href="/work/spice-palace" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
-                    View project case study <ArrowUpRight className="size-4" />
-                  </Link>
-                </div>
+              <Reveal delay={100}>
+                <ProjectCard
+                  title="Spice Palace"
+                  category="Café & Restaurant"
+                  image="/images/work-4.webp"
+                  href="/work/spice-palace"
+                  liveUrl="https://spicepalace.netlify.app/"
+                />
               </Reveal>
             </div>
           </div>
