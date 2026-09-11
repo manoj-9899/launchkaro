@@ -141,7 +141,7 @@ export default function RestaurantWebsitesPage() {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <h3 className="text-2xl font-medium text-foreground">Nocturne</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Fine Dining (2025)</p>
+                    <p className="text-xs text-muted-foreground font-mono">Fine Dining</p>
                   </div>
                   <Link href="/work/nocturne" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
                     View project case study <ArrowUpRight className="size-4" />
@@ -161,7 +161,7 @@ export default function RestaurantWebsitesPage() {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <h3 className="text-2xl font-medium text-foreground">Spice Palace</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Café & Restaurant (2024)</p>
+                    <p className="text-xs text-muted-foreground font-mono">Café & Restaurant</p>
                   </div>
                   <Link href="/work/spice-palace" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
                     View project case study <ArrowUpRight className="size-4" />

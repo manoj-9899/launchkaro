@@ -41,7 +41,7 @@ const faqs: FAQItem[] = [
   {
     question: 'How do I start a project with LaunchKaro?',
     answer:
-      'Simply click "Start a project", submit the contact modal, or send us a message on WhatsApp (+91 94235 09134). We will chat through your requirements with no obligation.',
+      'Simply click "Start a project", submit the contact modal, or send us a message on WhatsApp (+91 94235 01805). We will chat through your requirements with no obligation.',
   },
 ]
 

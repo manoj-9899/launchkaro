@@ -14,13 +14,13 @@ export const SITE_CONFIG = {
     countryCode: 'IN',
   },
   contact: {
-    phone: '+919423509134',
-    phoneDisplay: '+91 94235 09134',
-    whatsappNumber: '919423509134',
+    phone: '+919423501805',
+    phoneDisplay: '+91 94235 01805',
+    whatsappNumber: '919423501805',
     email: 'launchkaro.team@gmail.com',
   },
   social: {
-    whatsappUrl: 'https://wa.me/919423509134',
+    whatsappUrl: 'https://wa.me/919423501805',
   },
 } as const
 

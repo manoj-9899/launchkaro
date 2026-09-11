@@ -170,7 +170,7 @@ export function ContactForm() {
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="e.g. 94235 09134"
+            placeholder="e.g. 94235 01805"
             className="w-full h-10.5 rounded-xl border border-background/20 bg-background/10 px-3.5 text-sm text-background placeholder:text-background/40 focus:border-background focus:bg-background/20 focus:outline-none transition-all"
           />
         </div>

@@ -32,7 +32,6 @@ const projects = [
     slug: 'nocturne',
     title: 'Nocturne',
     category: 'Fine Dining',
-    year: '2025',
     image: '/images/work-1.webp',
     tagline: 'Elegant, mood-lit digital experience crafted for a luxury restaurant to showcase menus and table reservations.',
     liveUrl: 'https://nocturne-restaurant-website.vercel.app/',
@@ -42,7 +41,6 @@ const projects = [
     slug: 'atelier-estate',
     title: 'Atelier Estate',
     category: 'Real Estate',
-    year: '2025',
     image: '/images/work-2.webp',
     tagline: 'Sophisticated property portal designed for premium residential and luxury real estate listings.',
     liveUrl: 'https://atelier-estate-website.vercel.app/',
@@ -52,7 +50,6 @@ const projects = [
     slug: 'patel-function-hall',
     title: 'Patel Function Hall',
     category: 'Events & Venues',
-    year: '2024',
     image: '/images/work-3.webp',
     tagline: 'Event venue website highlighting banquet amenities, booking inquiries, and photo galleries for weddings and celebrations.',
     liveUrl: 'https://patel-function-hall-demo-1.vercel.app/',
@@ -62,7 +59,6 @@ const projects = [
     slug: 'spice-palace',
     title: 'Spice Palace',
     category: 'Café & Restaurant',
-    year: '2024',
     image: '/images/work-4.webp',
     tagline: 'Vibrant restaurant website with menu highlights, location integration, and direct ordering pathways.',
     liveUrl: 'https://spicepalace.netlify.app/',
@@ -72,7 +68,6 @@ const projects = [
     slug: 'ascent-academy',
     title: 'Ascent Academy',
     category: 'Education',
-    year: '2024',
     image: '/images/work-5.webp',
     tagline: 'Modern coaching institute website for entrance exam prep (JEE, NEET), built to showcase programs, faculty, and results with demo class bookings.',
     liveUrl: 'https://ascent-academy-website.vercel.app/',
@@ -127,7 +122,7 @@ export default function WorkOverviewPage() {
                   <div>
                     <h2 className="text-2xl sm:text-3xl font-medium text-foreground">{p.title}</h2>
                     <p className="text-sm text-muted-foreground font-mono mt-1">
-                      {p.category} — ({p.year})
+                      {p.category}
                     </p>
                     <p className="text-sm text-muted-foreground mt-3 max-w-2xl leading-relaxed">
                       {p.tagline}
@@ -145,9 +140,10 @@ export default function WorkOverviewPage() {
                       href={p.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-border px-4 py-2 text-xs font-mono text-muted-foreground hover:border-foreground hover:text-foreground transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4.5 py-2 text-xs sm:text-sm font-medium text-background hover:bg-foreground/85 transition-all duration-300 shadow-sm active:scale-95"
                     >
-                      Live demo ↗
+                      <span>Live demo</span>
+                      <ArrowUpRight className="size-3.5 text-background" />
                     </a>
                   </div>
                 </div>

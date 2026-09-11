@@ -139,7 +139,7 @@ export default function EventVenueWebsitesPage() {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <h3 className="text-2xl font-medium text-foreground">Patel Function Hall</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Events & Venues (2024)</p>
+                    <p className="text-xs text-muted-foreground font-mono">Events & Venues</p>
                   </div>
                   <Link href="/work/patel-function-hall" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
                     View project case study <ArrowUpRight className="size-4" />

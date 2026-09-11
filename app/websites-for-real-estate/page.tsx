@@ -139,7 +139,7 @@ export default function RealEstateWebsitesPage() {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <h3 className="text-2xl font-medium text-foreground">Atelier Estate</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Real Estate (2025)</p>
+                    <p className="text-xs text-muted-foreground font-mono">Real Estate</p>
                   </div>
                   <Link href="/work/atelier-estate" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
                     View project case study <ArrowUpRight className="size-4" />

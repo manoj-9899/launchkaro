@@ -37,7 +37,7 @@ export default function AtelierEstateCaseStudyPage() {
             <div className="max-w-4xl pt-4 space-y-4">
               <div className="flex items-center gap-3 text-xs tracking-[0.18em] uppercase text-muted-foreground font-mono">
                 <span className="size-2 rounded-full bg-signal" />
-                <span>REAL ESTATE SHOWCASE PROJECT — 2025</span>
+                <span>REAL ESTATE SHOWCASE PROJECT</span>
               </div>
 
               <h1 className="text-[clamp(2.2rem,6.5vw,4.5rem)] leading-[1.02] font-medium tracking-[-0.035em]">
@@ -83,7 +83,6 @@ export default function AtelierEstateCaseStudyPage() {
                 <h3 className="text-xs uppercase tracking-wider font-mono text-muted-foreground">Project Details</h3>
                 <div className="space-y-2 text-sm">
                   <p><strong className="text-foreground">Category:</strong> Real Estate</p>
-                  <p><strong className="text-foreground">Year:</strong> 2025</p>
                   <p><strong className="text-foreground">Tech:</strong> Next.js, Tailwind CSS</p>
                 </div>
               </div>

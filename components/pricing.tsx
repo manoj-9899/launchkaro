@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, MessageCircle, Sparkles } from 'lucide-react'
+import { Check, MessageCircle } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { cn } from '@/lib/utils'
@@ -131,8 +131,7 @@ export function Pricing() {
                   {/* Pro "MOST POPULAR" Badge */}
                   {isPro && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1 text-[11px] font-semibold tracking-wider text-background uppercase shadow-sm">
-                        <Sparkles className="size-3 text-signal" />
+                      <span className="inline-flex items-center justify-center rounded-full bg-foreground px-4 py-1 text-[11px] font-semibold tracking-wider text-background uppercase shadow-sm">
                         Most Popular
                       </span>
                     </div>

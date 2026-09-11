@@ -139,7 +139,7 @@ export default function CoachingWebsitesPage() {
                 <div className="flex items-baseline justify-between pt-2">
                   <div>
                     <h3 className="text-2xl font-medium text-foreground">Ascent Academy</h3>
-                    <p className="text-xs text-muted-foreground font-mono">Education & Coaching (2024)</p>
+                    <p className="text-xs text-muted-foreground font-mono">Education & Coaching</p>
                   </div>
                   <Link href="/work/ascent-academy" className="link-underline text-sm font-medium text-foreground flex items-center gap-1">
                     View project case study <ArrowUpRight className="size-4" />

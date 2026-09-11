@@ -21,7 +21,6 @@ const projects = [
     title: 'Nocturne',
     category: 'Fine Dining',
     tagline: 'Elegant, mood-lit digital experience crafted for a luxury restaurant to showcase menus and table reservations.',
-    year: '2025',
     image: '/images/work-1.webp',
     liveUrl: 'https://nocturne-restaurant-website.vercel.app/',
     tags: ['Fine Dining', 'Menu Showcase', 'Reservations'],
@@ -31,7 +30,6 @@ const projects = [
     title: 'Atelier Estate',
     category: 'Real Estate',
     tagline: 'Sophisticated property portal designed for premium residential and luxury real estate listings.',
-    year: '2025',
     image: '/images/work-2.webp',
     liveUrl: 'https://atelier-estate-website.vercel.app/',
     tags: ['Real Estate', 'Luxury Listings', 'Property Portal'],
@@ -41,7 +39,6 @@ const projects = [
     title: 'Patel Function Hall',
     category: 'Events & Venues',
     tagline: 'Event venue website highlighting banquet amenities, booking inquiries, and photo galleries for weddings and celebrations.',
-    year: '2024',
     image: '/images/work-3.webp',
     liveUrl: 'https://patel-function-hall-demo-1.vercel.app/',
     tags: ['Events & Venues', 'Banquet Amenities', 'Inquiries'],
@@ -51,7 +48,6 @@ const projects = [
     title: 'Spice Palace',
     category: 'Café & Restaurant',
     tagline: 'Vibrant restaurant website with menu highlights, location integration, and direct ordering pathways.',
-    year: '2024',
     image: '/images/work-4.webp',
     liveUrl: 'https://spicepalace.netlify.app/',
     tags: ['Café & Restaurant', 'Menu Highlights', 'Online Ordering'],
@@ -61,7 +57,6 @@ const projects = [
     title: 'Ascent Academy',
     category: 'Education',
     tagline: 'Modern coaching institute website for entrance exam prep (JEE, NEET), built to showcase programs, faculty, and results with demo class bookings.',
-    year: '2024',
     image: '/images/work-5.webp',
     liveUrl: 'https://ascent-academy-website.vercel.app/',
     tags: ['Education', 'JEE & NEET Prep', 'Demo Class Booking'],
@@ -340,8 +335,8 @@ export function Work() {
                             <h3 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-foreground">
                               {project.title}
                             </h3>
-                            <span className="text-xs sm:text-sm text-muted-foreground/75 font-mono">
-                              — {project.category} <span className="opacity-60">({project.year})</span>
+                            <span className="text-xs sm:text-sm text-muted-foreground font-mono">
+                              — {project.category}
                             </span>
                           </div>
 
@@ -350,7 +345,7 @@ export function Work() {
                             target={isActive ? '_blank' : undefined}
                             rel={isActive ? 'noopener noreferrer' : undefined}
                             tabIndex={isActive ? 0 : -1}
-                            className="link-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground transition-colors hover:text-signal shrink-0"
+                            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-xs sm:text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/85 active:scale-95 shrink-0 shadow-sm"
                             onClick={(e) => {
                               if (!isActive) {
                                 e.preventDefault()
@@ -358,7 +353,7 @@ export function Work() {
                             }}
                           >
                             Live demo
-                            <ArrowUpRight className="size-3.5" />
+                            <ArrowUpRight className="size-3.5 text-background" />
                           </a>
                         </div>
 
